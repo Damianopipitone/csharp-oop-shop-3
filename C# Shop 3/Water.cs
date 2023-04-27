@@ -14,17 +14,8 @@ namespace CSharp_Composizione_Shop
 
         // COSTRUTTORE
         public Water(string name, int pH) : base(name)
-        {   
-            if (pH < 0)
-            {
-                throw new ArgumentException("Non esiste un'acqua con un pH negativo!");
-            } else if (pH > 10)
-            {
-                throw new ArgumentException("Non esiste un'acqua con un pH superiore a 10!");
-            } else
-            {
-                this.ph = pH;
-            }
+        {
+            this.ph = pH;
         }
 
         // GETTERS
@@ -61,7 +52,18 @@ namespace CSharp_Composizione_Shop
 
         public void setPH(int pH)
         {
-            this.ph = pH;
+            if (pH < 0)
+            {
+                throw new ArgumentException("Non esiste un'acqua con un pH negativo!");
+            }
+            else if (pH > 10)
+            {
+                throw new ArgumentException("Non esiste un'acqua con un pH superiore a 10!");
+            }
+            else
+            {
+                this.ph = pH;
+            }
         }
         // METODI
 
