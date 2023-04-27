@@ -18,7 +18,7 @@ try {
     // DEFINISCO I PRODOTTI CHE IL MIO SHOP TRATTA
     itemShop insalata = new itemShop("Insalata");
     itemShop pollo = new itemShop("Pollo");
-    Water acqua = new Water("Levissima", 5);
+    Water acqua = new Water("Levissima", 7);
 
     // DEFINISCO LE CATEGOIRE PER I MIEI PRODOTTO
     Category verdura = new Category("Verdura", "Insalata verde");
@@ -36,9 +36,10 @@ try {
 
 
     Console.WriteLine(negozio.InfoShop());
-    acqua.SetRefill(1.5f);
-    acqua.Bevi(0.8f);
-    acqua.setPH(-3);
+    acqua.SetCapacity(0.5f);
+    acqua.Bevi(0f);
+    acqua.setPH(7);
+    acqua.Riempi(2);
 
 } catch(ArgumentException ex)
 {

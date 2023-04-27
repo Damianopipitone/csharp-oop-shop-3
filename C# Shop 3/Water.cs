@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace CSharp_Composizione_Shop
         // COSTRUTTORE
         public Water(string name, int pH) : base(name)
         {
-            this.ph = pH;
+            setPH(pH);
         }
 
         // GETTERS
@@ -37,7 +38,7 @@ namespace CSharp_Composizione_Shop
 
         //SETTERS
 
-        public void SetRefill(float capacity)
+        public void SetCapacity(float capacity)
         {
 
             if (capacity > MaxCapacity)
@@ -72,7 +73,7 @@ namespace CSharp_Composizione_Shop
             double acquaRimanente = MaxCapacity - LitriDaBere;
             if (MaxCapacity < LitriDaBere)
             {
-                Console.WriteLine("L'acqua è insufficiente");
+                throw new ArgumentException("L'acqua è insufficiente!");
             }
             else
             {
@@ -80,6 +81,27 @@ namespace CSharp_Composizione_Shop
                 Console.WriteLine("Ti rimane da bere: " + acquaRimanente.ToString("F") + "L");
             }
 
+            if (acquaRimanente == 0)
+            {
+               this.MaxCapacity = 0f;
+               throw new ArgumentException("Hai finito l'acqua! Riempila se vuoi bere ancora.");
+            }
+
+        
+
+        }
+
+        public void Riempi(float LitriDaRiempire)
+        {
+            double acquaRiempita = MaxCapacity + LitriDaRiempire;
+            
+            if (LitriDaRiempire > 1.5f)
+            {
+                throw new ArgumentException("Hai superato il limite di capacità");
+            } else
+            {
+                Console.WriteLine("Hai riempito " + LitriDaRiempire + "L");
+            }
         }
         public override string GetItemString()
         {
