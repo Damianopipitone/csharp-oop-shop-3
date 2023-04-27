@@ -9,20 +9,27 @@ namespace CSharp_Composizione_Shop
     // SOTTOCLASSE
     public class Water : itemShop
     {
-        private string ph;
-        private float capacity;
+        private int ph;
         private float MaxCapacity = 1.5f;
 
         // COSTRUTTORE
-        public Water(string name, string pH) : base(name)
-        {
-            this.ph = pH;
-
+        public Water(string name, int pH) : base(name)
+        {   
+            if (pH < 0)
+            {
+                throw new ArgumentException("Non esiste un'acqua con un pH negativo!");
+            } else if (pH > 10)
+            {
+                throw new ArgumentException("Non esiste un'acqua con un pH superiore a 10!");
+            } else
+            {
+                this.ph = pH;
+            }
         }
 
         // GETTERS
 
-        public string GetWaterName()
+        public int GetWaterName()
         {
             return this.ph;
         }
@@ -30,6 +37,11 @@ namespace CSharp_Composizione_Shop
         public float GetCapacity()
         {
             return this.MaxCapacity;
+        }
+
+        public int GetPH()
+        {
+            return this.ph;
         }
 
         //SETTERS
@@ -45,6 +57,11 @@ namespace CSharp_Composizione_Shop
             {
                 this.MaxCapacity = capacity;
             }
+        }
+
+        public void setPH(int pH)
+        {
+            this.ph = pH;
         }
         // METODI
 
@@ -65,8 +82,8 @@ namespace CSharp_Composizione_Shop
         public override string GetItemString()
         {
             string rapprString = "Nome Prodotto : " + this.GetName() + "\n";
-            rapprString += "\t Marca: " + this.GetWaterName() + "\n";
             rapprString += "\t Capacità massima: " + this.GetCapacity() + "\n";
+            rapprString += "\t pH: " + this.GetPH() + "\n";
             return rapprString;
         }
     }
